@@ -87,10 +87,10 @@ For generating Linux Release Makefile:
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
 ```
-For generating Linux Debug Makefile:
+For generating Linux Debug Makefile **IMPORTANT: EXECUTE WITHOUT SIMD**:
 ```bash
 cd build
-cmake .. -DCMAKE_BUILD_TYPE=Debug
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_SIMD=OFF -DCMAKE_SYSTEM_PROCESSOR=arm64 ..
 ```
 
 Then type
