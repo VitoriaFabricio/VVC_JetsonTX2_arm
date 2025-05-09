@@ -14,22 +14,22 @@ file( GLOB BASE_INC_FILES "*.h" )
 
 if (NOT (CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64") )
   # get x86 source files
-  file( GLOB X86_SRC_FILES "x86/*.cpp" )
+  #file( GLOB X86_SRC_FILES "x86/*.cpp" )
 
   # get x86 include files
-  file( GLOB X86_INC_FILES "x86/*.h" )
+  #file( GLOB X86_INC_FILES "x86/*.h" )
 
   # get avx source files
-  file( GLOB AVX_SRC_FILES "x86/avx/*.cpp" )
+  #file( GLOB AVX_SRC_FILES "x86/avx/*.cpp" )
 
   # get avx2 source files
-  file( GLOB AVX2_SRC_FILES "x86/avx2/*.cpp" )
+  #file( GLOB AVX2_SRC_FILES "x86/avx2/*.cpp" )
 
   # get sse4.2 source files
-  file( GLOB SSE42_SRC_FILES "x86/sse42/*.cpp" )
+  #file( GLOB SSE42_SRC_FILES "x86/sse42/*.cpp" )
 
   # get sse4.1 source files
-  file( GLOB SSE41_SRC_FILES "x86/sse41/*.cpp" )
+  #file( GLOB SSE41_SRC_FILES "x86/sse41/*.cpp" )
 endif()
 
 # get libmd5 source files
@@ -40,11 +40,12 @@ file( GLOB MD5_INC_FILES "../libmd5/*.h" )
 
 
 # get all source files
-set( SRC_FILES ${BASE_SRC_FILES} ${X86_SRC_FILES} ${SSE41_SRC_FILES} ${SSE42_SRC_FILES} ${AVX_SRC_FILES} ${AVX2_SRC_FILES} ${MD5_SRC_FILES} )
+#set( SRC_FILES ${BASE_SRC_FILES} ${X86_SRC_FILES} ${SSE41_SRC_FILES} ${SSE42_SRC_FILES} ${AVX_SRC_FILES} ${AVX2_SRC_FILES} ${MD5_SRC_FILES} )
+set( SRC_FILES ${BASE_SRC_FILES} ${MD5_SRC_FILES} )
 
 # get all include files
-set( INC_FILES ${BASE_INC_FILES} ${X86_INC_FILES} ${MD5_INC_FILES} )
-
+#set( INC_FILES ${BASE_INC_FILES} ${X86_INC_FILES} ${MD5_INC_FILES} )
+set( INC_FILES ${BASE_INC_FILES} ${MD5_INC_FILES} )
 
 # library
 add_library( ${LIB_NAME} STATIC ${SRC_FILES} ${INC_FILES} ${NATVIS_FILES} )
@@ -89,19 +90,19 @@ endif ()
 
 if (NOT (CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64") )
   # set needed compile definitions
-  set_property( SOURCE ${SSE41_SRC_FILES} APPEND PROPERTY COMPILE_DEFINITIONS USE_SSE41 )
-  set_property( SOURCE ${SSE42_SRC_FILES} APPEND PROPERTY COMPILE_DEFINITIONS USE_SSE42 )
-  set_property( SOURCE ${AVX_SRC_FILES}   APPEND PROPERTY COMPILE_DEFINITIONS USE_AVX )
-  set_property( SOURCE ${AVX2_SRC_FILES}  APPEND PROPERTY COMPILE_DEFINITIONS USE_AVX2 )
+  #set_property( SOURCE ${SSE41_SRC_FILES} APPEND PROPERTY COMPILE_DEFINITIONS USE_SSE41 )
+  #set_property( SOURCE ${SSE42_SRC_FILES} APPEND PROPERTY COMPILE_DEFINITIONS USE_SSE42 )
+  #set_property( SOURCE ${AVX_SRC_FILES}   APPEND PROPERTY COMPILE_DEFINITIONS USE_AVX )
+  #set_property( SOURCE ${AVX2_SRC_FILES}  APPEND PROPERTY COMPILE_DEFINITIONS USE_AVX2 )
   # set needed compile flags
   if( MSVC )
-    set_property( SOURCE ${AVX_SRC_FILES}   APPEND PROPERTY COMPILE_FLAGS "/arch:AVX" )
-    set_property( SOURCE ${AVX2_SRC_FILES}  APPEND PROPERTY COMPILE_FLAGS "/arch:AVX2" )
+    #set_property( SOURCE ${AVX_SRC_FILES}   APPEND PROPERTY COMPILE_FLAGS "/arch:AVX" )
+    #set_property( SOURCE ${AVX2_SRC_FILES}  APPEND PROPERTY COMPILE_FLAGS "/arch:AVX2" )
   elseif( UNIX OR MINGW )
-    set_property( SOURCE ${SSE41_SRC_FILES} APPEND PROPERTY COMPILE_FLAGS "-msse4.1" )
-    set_property( SOURCE ${SSE42_SRC_FILES} APPEND PROPERTY COMPILE_FLAGS "-msse4.2" )
-    set_property( SOURCE ${AVX_SRC_FILES}   APPEND PROPERTY COMPILE_FLAGS "-mavx" )
-    set_property( SOURCE ${AVX2_SRC_FILES}  APPEND PROPERTY COMPILE_FLAGS "-mavx2" )
+    #set_property( SOURCE ${SSE41_SRC_FILES} APPEND PROPERTY COMPILE_FLAGS "-msse4.1" )
+    #set_property( SOURCE ${SSE42_SRC_FILES} APPEND PROPERTY COMPILE_FLAGS "-msse4.2" )
+    #set_property( SOURCE ${AVX_SRC_FILES}   APPEND PROPERTY COMPILE_FLAGS "-mavx" )
+    #set_property( SOURCE ${AVX2_SRC_FILES}  APPEND PROPERTY COMPILE_FLAGS "-mavx2" )
   endif()
 endif()
 
